@@ -5,7 +5,6 @@ import Tracker from "./components/Tracker";
 import Output from "./components/Output";
 import Map from "./components/Map";
 
-console.log(process.env.REACT_APP_API_KEY);
 // valid ips
 // 115.42.150.37
 // 192.168.0.1
@@ -23,15 +22,13 @@ const theme = {
 };
 
 function App() {
-    const [usrData, setUsrData] = React.useState({
-        ip: "",
-        error: false,
-    });
-
-    const [fetchedData, setFetchedData] = React.useState({
+    const [appData, setAppData] = React.useState({
         fetched: false,
         data: {},
         cords: [51.505, -0.09],
+        ip: "",
+        usrIp: "",
+        error: false,
     });
 
     const [url, setUrl] = React.useState(``);
@@ -42,17 +39,31 @@ function App() {
                 .then((res) => res.json())
                 .then((data) => {
                     const cords = getCords(data);
-                    setFetchedData((oldData) => ({
+                    setAppData((oldData) => ({
                         ...oldData,
                         fetched: true,
                         data: data,
                         cords: cords,
+                        ip: "",
+                        error: false,
                     }));
                 });
         } catch {
-            setUsrData((oldData) => ({ ...oldData, error: true }));
+            setAppData((oldData) => ({ ...oldData, error: true }));
         }
     }, [url]);
+
+    useEffect(() => {
+        try {
+            fetch("https://api.ipify.org?format=json")
+                .then((res) => res.json())
+                .then((data) => {
+                    setAppData((oldData) => ({ ...oldData, usrIp: data.ip }));
+                });
+        } catch {
+            console.log("Error");
+        }
+    }, []);
 
     const getCords = (data) => {
         const cords = [];
@@ -62,33 +73,43 @@ function App() {
     };
 
     const handleClick = () => {
-        checkInput(usrData.ip);
-        console.log(usrData);
+        const isValidIp = checkInput(appData.ip);
+        isValidIp ? updateUrl() : showError();
     };
 
     const checkInput = (ip) => {
         const regexExp =
             /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
         const isValidIp = regexExp.test(ip);
-        isValidIp ? updateUrl() : showError();
+        return isValidIp;
     };
 
     const updateUrl = () => {
         setUrl(
-            `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${usrData.ip}`
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${appData.ip}`
         );
     };
 
     const showError = () => {
-        setUsrData((oldData) => ({ ...oldData, error: true }));
+        setAppData((oldData) => ({ ...oldData, error: true }));
     };
 
     const getUsrInput = (e) => {
         let ip = e.target.value;
-        setUsrData((oldData) => ({ ...oldData, ip: ip }));
+        setAppData((oldData) => ({ ...oldData, ip: ip }));
     };
 
-    console.log(fetchedData);
+    const handleUsrIp = () => {
+        setAppData((oldData) => ({
+            ...oldData,
+            ip: oldData.usrIp,
+        }));
+        setUrl(
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${appData.ip}`
+        );
+    };
+
+    console.log(appData);
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -96,13 +117,14 @@ function App() {
                 <main>
                     <Tracker
                         onChange={getUsrInput}
-                        usrData={usrData}
+                        usrData={appData}
                         handleClick={handleClick}
+                        handleUsrIp={handleUsrIp}
                     />
-                    <Map cords={fetchedData.cords} />
+                    <Map cords={appData.cords} />
                 </main>
-                {fetchedData.fetched && !usrData.error && (
-                    <Output data={fetchedData.data} />
+                {appData.fetched && !appData.error && (
+                    <Output data={appData.data} />
                 )}
             </ThemeProvider>
         </>

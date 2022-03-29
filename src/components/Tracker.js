@@ -3,6 +3,7 @@ import { StyledInput } from "./styled/Styled.Input";
 import { StyledButton } from "./styled/Styled.Button";
 
 const Tracker = (props) => {
+    console.log(props);
     return (
         <StyledTracker>
             {props.usrData.error && <p>Invalid Ip Address</p>}
@@ -17,13 +18,14 @@ const Tracker = (props) => {
                     placeholder='Enter Ip Address.'
                 />
 
-                <StyledButton onClick={props.handleClick}>
+                <button className='input-btn' onClick={props.handleClick}>
                     <img
-                        src='./images/icon-arrow.svg'
+                        src='https://jakelanghel.github.io/ip-address-tracker//images/icon-arrow.svg'
                         alt='Enter Ip address'
                     ></img>
-                </StyledButton>
+                </button>
             </div>
+            <StyledButton onClick={props.handleUsrIp}>Get your IP</StyledButton>
         </StyledTracker>
     );
 };
