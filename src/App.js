@@ -13,6 +13,10 @@ import Map from "./components/Map";
 // 192.212.174.101
 
 const theme = {
+    layout: {
+        desktop: "600px",
+    },
+
     colors: {
         veryDarkGray: "hsl(0, 0%, 17%)",
         darkGray: "hsl(0, 0%, 59%)",
@@ -27,24 +31,38 @@ function App() {
         data: {},
         cords: [51.505, -0.09],
         ip: "",
-        usrIp: "",
         error: false,
     });
 
-    const [url, setUrl] = React.useState(``);
+    useEffect(() => {
+        try {
+            fetch("https://api.ipify.org?format=json")
+                .then((res) => res.json())
+                .then((data) => {
+                    setAppData((oldData) => ({ ...oldData, ip: data.ip }));
+                });
+        } catch {
+            console.log("Error");
+        }
+    }, []);
+
+    const [url, setUrl] = React.useState(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${appData.ip}`
+    );
 
     useEffect(() => {
         try {
             fetch(url)
                 .then((res) => res.json())
                 .then((data) => {
+                    console.log(data);
                     const cords = getCords(data);
                     setAppData((oldData) => ({
                         ...oldData,
                         fetched: true,
                         data: data,
                         cords: cords,
-                        ip: "",
+                        ip: oldData.ip,
                         error: false,
                     }));
                 });
@@ -52,18 +70,6 @@ function App() {
             setAppData((oldData) => ({ ...oldData, error: true }));
         }
     }, [url]);
-
-    useEffect(() => {
-        try {
-            fetch("https://api.ipify.org?format=json")
-                .then((res) => res.json())
-                .then((data) => {
-                    setAppData((oldData) => ({ ...oldData, usrIp: data.ip }));
-                });
-        } catch {
-            console.log("Error");
-        }
-    }, []);
 
     const getCords = (data) => {
         const cords = [];
@@ -99,17 +105,6 @@ function App() {
         setAppData((oldData) => ({ ...oldData, ip: ip }));
     };
 
-    const handleUsrIp = () => {
-        setAppData((oldData) => ({
-            ...oldData,
-            ip: oldData.usrIp,
-        }));
-        setUrl(
-            `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${appData.ip}`
-        );
-    };
-
-    console.log(appData);
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -119,7 +114,6 @@ function App() {
                         onChange={getUsrInput}
                         usrData={appData}
                         handleClick={handleClick}
-                        handleUsrIp={handleUsrIp}
                     />
                     <Map cords={appData.cords} />
                 </main>

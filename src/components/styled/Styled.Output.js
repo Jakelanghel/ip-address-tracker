@@ -4,11 +4,11 @@ export const StyledOutput = styled.div`
     text-align: center;
 
     h2 {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         letter-spacing: 1px;
         text-transform: uppercase;
         color: ${({ theme }) => theme.colors.darkGray};
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.75rem;
     }
 
     p {
@@ -16,6 +16,12 @@ export const StyledOutput = styled.div`
         font-weight: 500;
         letter-spacing: 1px;
         text-transform: capitalize;
-        padding-bottom: 1.5rem;
+        padding-bottom: 1.75rem;
+    }
+
+    @media (min-width: 750px) {
+        p {
+            padding-bottom: 0;
+        }
     }
 `;

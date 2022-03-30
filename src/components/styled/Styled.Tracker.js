@@ -25,7 +25,7 @@ export const StyledTracker = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 2.5rem;
+        margin-bottom: 8rem;
     }
 
     p {
@@ -40,10 +40,25 @@ export const StyledTracker = styled.div`
     .input-btn {
         border: none;
         padding: 1.5rem 2rem;
-        /* margin-bottom: 8rem; */
+        margin-bottom: 2rem;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
         color: ${({ theme }) => theme.colors.white};
         background: ${({ theme }) => theme.colors.veryDarkGray};
+    }
+
+    .input-btn:hover {
+        cursor: pointer;
+    }
+
+    .input-btn:hover,
+    .input-btn:focus {
+        opacity: 0.8;
+    }
+
+    @media (min-width: 750px) {
+        .container-input {
+            margin-bottom: 4rem;
+        }
     }
 `;
