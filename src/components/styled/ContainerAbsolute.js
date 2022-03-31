@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import { ThemeProvider } from "styled-components";
 
 export const ContainerAbsolute = styled.div`
     width: 85%;
     max-width: 500px;
     position: absolute;
-    top: 200px;
+    top: 175px;
     left: 50%;
     transform: translateX(-50%);
     background-color: ${({ theme }) => theme.colors.white};
-    padding: 2rem;
-    padding-bottom: 0.5rem;
+    padding: 1.5rem;
+    padding-bottom: 0rem;
     border-radius: 20px;
     z-index: 1;
 
@@ -21,7 +20,7 @@ export const ContainerAbsolute = styled.div`
         align-items: flex-start;
         text-align: left;
         padding: 0;
-        padding: 3rem 0;
+        padding: 2.5rem 0;
         padding-right: 5rem;
         top: 220px;
 
@@ -29,7 +28,7 @@ export const ContainerAbsolute = styled.div`
             max-width: 200px;
             padding-left: 1.75rem;
             border-left: solid 1px gray;
-            min-height: 100px;
+            min-height: 75px;
             margin-right: 15px;
         }
     }

@@ -11,6 +11,8 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-size: 18px;
+        height: 100%;
+
 
     }
     h1,
@@ -22,8 +24,9 @@ export const GlobalStyles = createGlobalStyle`
 
     main {
         z-index: 0;
-        display: flex;
-        flex-direction: column;
+        /* display: flex; */
+        /* flex-direction: column; */
+        height: 100%;
     }
 
    

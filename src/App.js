@@ -55,7 +55,6 @@ function App() {
             fetch(url)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
                     const cords = getCords(data);
                     setAppData((oldData) => ({
                         ...oldData,
@@ -126,3 +125,6 @@ function App() {
 }
 
 export default App;
+
+// 40.892796, -440.34248;
+// 40.900305, -440.343254;

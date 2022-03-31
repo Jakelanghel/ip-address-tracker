@@ -3,8 +3,6 @@ import { ContainerAbsolute } from "./styled/ContainerAbsolute";
 import { StyledOutput } from "./styled/Styled.Output";
 
 const Output = (props) => {
-    console.log(props.data);
-
     const location = props.data.location.city
         ? `${props.data.location.city}, ${props.data.location.region}`
         : props.data.location.country;

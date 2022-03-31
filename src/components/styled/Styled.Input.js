@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 export const StyledInput = styled.input`
-    width: 70%;
-    max-width: 425px;
     font-size: 1.25rem;
+    width: 75%;
     font-weight: 500;
     padding: 1.25rem 2rem;
-    margin-bottom: 2rem;
     border: none;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -17,5 +15,9 @@ export const StyledInput = styled.input`
 
     &&:hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 375px) {
+        width: 65%;
     }
 `;
