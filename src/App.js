@@ -123,10 +123,10 @@ function App() {
                         clearInput={clearInput}
                     />
                     <Map cords={appData.cords} center={appData.cords} />
+                    {appData.fetched && !appData.error && (
+                        <Output data={appData.data} />
+                    )}
                 </main>
-                {appData.fetched && !appData.error && (
-                    <Output data={appData.data} />
-                )}
             </ThemeProvider>
         </>
     );
