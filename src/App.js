@@ -9,7 +9,6 @@ import Map from "./components/Map";
 // 115.42.150.37
 // 192.168.0.1
 // 110.234.52.124
-
 // 192.212.174.101
 
 const theme = {
@@ -96,12 +95,20 @@ function App() {
     };
 
     const showError = () => {
-        setAppData((oldData) => ({ ...oldData, error: true }));
+        setAppData((oldData) => ({
+            ...oldData,
+            error: true,
+            ip: "Invalid Ip Address",
+        }));
     };
 
     const getUsrInput = (e) => {
         let ip = e.target.value;
         setAppData((oldData) => ({ ...oldData, ip: ip }));
+    };
+
+    const clearInput = () => {
+        setAppData((oldState) => ({ ...oldState, ip: "" }));
     };
 
     return (
@@ -113,8 +120,9 @@ function App() {
                         onChange={getUsrInput}
                         usrData={appData}
                         handleClick={handleClick}
+                        clearInput={clearInput}
                     />
-                    <Map cords={appData.cords} />
+                    <Map cords={appData.cords} center={appData.cords} />
                 </main>
                 {appData.fetched && !appData.error && (
                     <Output data={appData.data} />
@@ -125,6 +133,3 @@ function App() {
 }
 
 export default App;
-
-// 40.892796, -440.34248;
-// 40.900305, -440.343254;

@@ -16,18 +16,12 @@ export const StyledOutput = styled.div`
         font-weight: 500;
         letter-spacing: 1px;
         text-transform: capitalize;
-        padding-bottom: 1.75rem;
+        padding-bottom: 1.5rem;
     }
 
     @media (min-width: 750px) {
         p {
             padding-bottom: 0;
-        }
-    }
-
-    @media (max-width: 375px) {
-        p {
-            padding-bottom: 1.15rem;
         }
     }
 `;

@@ -4,15 +4,17 @@ import { StyledInput } from "./styled/Styled.Input";
 const Tracker = (props) => {
     return (
         <StyledTracker>
-            {props.usrData.error && <p>Invalid Ip Address</p>}
+            <h1>Ip Address Tracker</h1>
             <label htmlFor='usr-input'>IP Address Tracker</label>
             <div className='container-input'>
                 <StyledInput
-                    id='urs-input'
+                    id='usr-input'
                     onChange={props.onChange}
+                    onFocus={props.clearInput}
                     value={props.usrData.ip}
-                    data={props.usrData}
-                    className={props.usrData.error && "error"}
+                    className={
+                        props.usrData.ip === "Invalid Ip Address" && "error"
+                    }
                     placeholder='Enter Ip Address.'
                 />
 

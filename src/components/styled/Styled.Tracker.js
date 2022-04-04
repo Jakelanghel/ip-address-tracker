@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledTracker = styled.div`
-    height: 40vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +12,10 @@ export const StyledTracker = styled.div`
     z-index: 0;
 
     label {
+        display: none;
+    }
+
+    h1 {
         font-size: 1.75rem;
         font-weight: 500;
         color: ${({ theme }) => theme.colors.white};
@@ -25,15 +28,12 @@ export const StyledTracker = styled.div`
         display: 0flex;
         justify-content: center;
         align-items: center;
-        /* margin-bottom: 8rem; */
+        margin-bottom: 8rem;
     }
 
-    p {
-        font-size: 0.75rem;
+    .error {
+        /* font-size: 0.75rem; */
         letter-spacing: 1px;
-        position: absolute;
-        top: 160px;
-        left: 48px;
         color: ${({ theme }) => theme.colors.errorRed};
     }
 

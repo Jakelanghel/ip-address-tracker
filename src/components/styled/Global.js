@@ -6,15 +6,24 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box
     }
 
+   html,
+   body {
+    height: 100%;
+   }
+
     body {
         font-family: 'Rubik', sans-serif;
         margin: 0;
         padding: 0;
         font-size: 18px;
         height: 100%;
-
-
     }
+
+    body {
+    padding: 0;
+    margin: 0;
+}
+
     h1,
     h2,
     p {
@@ -24,12 +33,8 @@ export const GlobalStyles = createGlobalStyle`
 
     main {
         z-index: 0;
-        /* display: flex; */
-        /* flex-direction: column; */
         height: 100%;
     }
-
-   
 
     .box-shadow {
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -37,4 +42,7 @@ export const GlobalStyles = createGlobalStyle`
         rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
 
+    .map-wrapper {
+        height: 100%;
+    }
 `;

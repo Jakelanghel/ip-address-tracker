@@ -5,6 +5,7 @@ export const StyledInput = styled.input`
     width: 75%;
     font-weight: 500;
     padding: 1.25rem 2rem;
+    padding-right: 0;
     border: none;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
