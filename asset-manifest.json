@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/ip-address-tracker/static/css/main.31d6cfe0.css",
-    "main.js": "/ip-address-tracker/static/js/main.8f88451b.js",
+    "main.js": "/ip-address-tracker/static/js/main.c2da76dd.js",
     "index.html": "/ip-address-tracker/index.html",
-    "main.8f88451b.js.map": "/ip-address-tracker/static/js/main.8f88451b.js.map"
+    "main.c2da76dd.js.map": "/ip-address-tracker/static/js/main.c2da76dd.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.8f88451b.js"
+    "static/js/main.c2da76dd.js"
   ]
 }
